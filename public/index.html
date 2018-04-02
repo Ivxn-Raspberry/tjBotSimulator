@@ -58,18 +58,18 @@ tj.shine("green");</textarea>
     </div>
     <div role="tabpanel" id="tabenv" class="tab-pane">
       <i>Include environment variables that can be accessed via process.env.____</i><br />
-      <textarea id="envcode">CONVERSATION_USERNAME=
-CONVERSATION_PASSWORD=
-CONVERSATION_WORKSPACE_ID=
+      <textarea id="envcode">CONVERSATION_USERNAME=3d5a5b47-1c78-473a-a630-1ebc491a4cab
+CONVERSATION_PASSWORD=8b26WBceHDqC
+CONVERSATION_WORKSPACE_ID=4ba827d1-55f5-4dce-becc-ae38b8ac5bb8
 LANGUAGE_TRANSLATOR_USERNAME=
 LANGUAGE_TRANSLATOR_PASSWORD=
-SPEECH_TO_TEXT_USERNAME=
-SPEECH_TO_TEXT_PASSWORD=
-TEXT_TO_SPEECH_USERNAME=
-TEXT_TO_SPEECH_PASSWORD=
+SPEECH_TO_TEXT_USERNAME=723123ae-d74b-439a-8a4e-c19b75f4e409
+SPEECH_TO_TEXT_PASSWORD=muqSxKGlxeMI
+TEXT_TO_SPEECH_USERNAME=9568aa6a-9432-4985-ba5c-8121cff8864d
+TEXT_TO_SPEECH_PASSWORD=RqCRBJtWw2Pm
 TONE_ANALYZER_USERNAME=
 TONE_ANALYZER_PASSWORD=
-VISUAL_RECOGNITION_API_KEY=
+VISUAL_RECOGNITION_API_KEY=1154a9f39f6be3aea65f729dc40262f6c3aa7a72
 </textarea>
     </div>
   </div>
@@ -148,7 +148,7 @@ tj.analyzeTone(text).then(response => {
 });
 
 tj.converse(process.env.CONVERSATION_WORKSPACE_ID, "hello", response => {
-  console.log(response)
+  console.log(response["output"]["text"][0])
 });</pre>
 
       <h3><code>identifyLanguage(text).then(response => {...})</code></h3>

@@ -18,6 +18,7 @@
  *   See the License for the specific language governing permissions and
  ****************************************************************************
 */
+var context = {};
 
 function TJBotListener() {
   this.actionPerformed = function(action, data) {
@@ -48,7 +49,7 @@ function TJBotListener() {
     var result = tjbotFunctions["lowerArm"].call(this, arguments);
     self.actionPerformed("tjbot.lowerArm", {});
     return result;
-  }  
+  }
 
   tjbotFunctions["listen"] = TJBot.prototype.listen;
   TJBot.prototype.listen = function(cb) {
@@ -133,7 +134,8 @@ function TJBotListener() {
 
   tjbotFunctions["converse"] = TJBot.prototype.converse;
   TJBot.prototype.converse = function(workspaceId, message, callback) {
-    tjbotFunctions["converse"].call(this, workspaceId, message, function(result) {
+    tjbotFunctions["converse"].call(this, workspaceId, message, context, function(result) {
+      context=result['object']['context'];
       self.actionPerformed("tjbot.converse", {
         message: message,
         workspaceId: workspaceId,
@@ -168,7 +170,7 @@ function TJBotListener() {
     });
 
     return new Promise((resolve, reject) => {
-      tjbotFunctions["tjbot.speak"].call(this, text).then(() => {
+      tjbotFunctions["speak"].call(this, text).then(() => {
         self.actionPerformed("speak", {
           credentials: this.credentials.text_to_speech,
           text: text

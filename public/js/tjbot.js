@@ -154,13 +154,11 @@ TJBot.prototype.lowerArm = function(text) {
   this._assertCapability("wave");
 }
 
-TJBot.prototype.converse = function(workspaceId, message, callback) {
+TJBot.prototype.converse = function(workspaceId, message, contextretrieved, callback) {
   this._assertCapability("converse");
 
   // capture context
   var self = this;
-  var context = (self._conversationContext[workspaceId] != undefined) ? self._conversationContext[workspaceId] : {};
-
   $.post({
     url: "/api/converse",
     method: "POST",
@@ -174,11 +172,10 @@ TJBot.prototype.converse = function(workspaceId, message, callback) {
       input: {
           "text": message
       },
-      context: context
+      context: contextretrieved
     })
   }).then(function(conversationResponseObject) {
-    self._conversationContext[workspaceId] = conversationResponseObject.context;
-
+    //self._conversationContext[workspaceId] = conversationResponseObject.context;
     if(conversationResponseObject.err) {
       callback(conversationResponseObject);
     } else {
@@ -213,7 +210,7 @@ TJBot.prototype.identifyLanguage = function(text) {
 
 TJBot.prototype.listen = function(cb) {
   this._assertCapability("listen");
-  
+
   var self = this;
 
   function run() {
